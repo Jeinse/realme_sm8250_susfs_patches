@@ -1,0 +1,37 @@
+[
+  {
+    "name": "bash-syntax",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "help",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "dry-run-on-pristine-baseline",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "apply-on-pristine-baseline",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "repeat-skips-without-changes",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "conflict-fails-without-partial-application",
+    "exit_code": 1,
+    "passed": true
+  },
+  {
+    "name": "checksum-fails-without-changes",
+    "exit_code": 1,
+    "passed": true
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "kernel": {
+    "repository": "bijoyv9/android_kernel_realme_sm8250",
+    "branch": "Entropy-1.7",
+    "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
+  },
+  "jack": {
+    "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
+    "branch": "mainline",
+    "commit": "732feefc0d4132bc313d39d7a511b9b7bbe51ddb"
+  },
+  "bakasu_check": {
+    "repository": "Baka-SU/BakaSU",
+    "commit": "516d3e87fbc986ccefdde2c2765f1700612441a9"
+  },
+  "inputs": [
+    {
+      "path": "susfs_inline_hook_patches.sh",
+      "sha256": "9afa89ee6474b80e2615096b926c1d8eef1cb7585f74130a375fbe6cf63d00f2"
+    },
+    {
+      "path": "susfs_patch_to_4.19.patch",
+      "sha256": "112faaad47fe7b500a127f2bc88488bcc7899a1cf4b764d46d884207162e9d42"
+    }
+  ],
+  "output": {
+    "path": "patches/entropy-1.7-susfs-2.3.0-jack.patch",
+    "sha256": "4897d59a73f3e4239e8e276cd6065eccec0e185bab80910e76df7754f64ff4bf",
+    "files": 27,
+    "additions": 4265,
+    "deletions": 1
+  },
+  "verification": {
+    "clean_apply_check": true,
+    "clean_apply": true,
+    "reverse_check": true,
+    "identical_result_files": 27,
+    "bakasu_inline_check": true,
+    "compiled_changed_c_files": 24,
+    "full_kernel_link": false,
+    "full_bakasu_build": false,
+    "device_boot_test": false
+  },
+  "entrypoint": {
+    "path": "susfs_inline_hook_patches.sh",
+    "sha256": "6b56bf9df6c68c83cd1cbe2875bbbfe223586ffa78ff44b56ff90ce3d257353b",
+    "kind": "verified merged-patch applicator"
+  },
+  "wrapper_validation": [
+    {
+      "name": "bash-syntax",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "help",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "dry-run-on-pristine-baseline",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "apply-on-pristine-baseline",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "repeat-skips-without-changes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "conflict-fails-without-partial-application",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "checksum-fails-without-changes",
+      "exit_code": 1,
+      "passed": true
+    }
+  ]
+}
