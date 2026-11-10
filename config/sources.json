@@ -1,0 +1,21 @@
+{
+  "kernel": {
+    "repository": "bijoyv9/android_kernel_realme_sm8250",
+    "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
+  },
+  "bakasu": {
+    "repository": "Baka-SU/BakaSU",
+    "commit": "516d3e87fbc986ccefdde2c2765f1700612441a9"
+  },
+  "jack": {
+    "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
+    "branch": "mainline",
+    "patch": "Patches/Patch/susfs_patch_to_4.19.patch",
+    "inline_script": "Patches/susfs_inline_hook_patches.sh"
+  },
+  "inline_paths": [
+    "fs/exec.c", "fs/open.c", "fs/read_write.c", "fs/stat.c", "fs/namei.c",
+    "drivers/input/input.c", "security/security.c", "security/selinux/hooks.c",
+    "security/selinux/ss/services.c", "kernel/reboot.c", "kernel/sys.c"
+  ]
+}

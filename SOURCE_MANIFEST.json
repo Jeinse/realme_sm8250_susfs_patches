@@ -43,7 +43,7 @@
   },
   "entrypoint": {
     "path": "susfs_inline_hook_patches.sh",
-    "sha256": "6b56bf9df6c68c83cd1cbe2875bbbfe223586ffa78ff44b56ff90ce3d257353b",
+    "sha256": "0ddd553cdec09e357a38e9666d062d84d8828cd3c07513d5ce9401efba415148",
     "kind": "verified merged-patch applicator"
   },
   "wrapper_validation": [

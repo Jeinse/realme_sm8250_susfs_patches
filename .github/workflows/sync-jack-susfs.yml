@@ -1,0 +1,112 @@
+name: Sync Jack SUSFS candidate (source checks only)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-jack-susfs.yml'
+      - 'config/**'
+      - 'compat/**'
+      - 'scripts/**'
+      - 'susfs_inline_hook_patches.sh'
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+    inputs:
+      jack_commit:
+        description: 'Optional full Jack commit SHA; blank tracks mainline'
+        required: false
+        type: string
+      force:
+        description: 'Regenerate even if the two tracked files are unchanged'
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-jack-susfs
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate the generator and current payload
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 scripts/sync_jack.py verify-repository
+
+      - name: Detect changes to the two upstream files
+        id: detect
+        env:
+          REQUESTED_JACK_SHA: ${{ inputs.jack_commit }}
+          FORCE_REBUILD: ${{ inputs.force }}
+        run: |
+          args=()
+          if [[ "$FORCE_REBUILD" == true ]]; then args+=(--force); fi
+          python3 scripts/sync_jack.py check \
+            --cache "$RUNNER_TEMP/susfs-sources" \
+            --out "$RUNNER_TEMP/susfs-candidate" \
+            --jack-ref "$REQUESTED_JACK_SHA" "${args[@]}"
+
+      - name: Generate and verify a candidate without compiling
+        if: steps.detect.outputs.changed == 'true'
+        env:
+          FORCE_REBUILD: ${{ inputs.force }}
+        run: |
+          args=()
+          if [[ "$FORCE_REBUILD" == true ]]; then args+=(--force); fi
+          jack_sha=$(python3 -c 'import json,os; print(json.load(open(os.environ["RUNNER_TEMP"]+"/susfs-candidate/detected.json"))["jack_commit"])')
+          python3 scripts/sync_jack.py generate \
+            --cache "$RUNNER_TEMP/susfs-sources" \
+            --out "$RUNNER_TEMP/susfs-candidate" \
+            --jack-ref "$jack_sha" "${args[@]}"
+
+      - name: Preserve candidate and diagnostic logs
+        if: always() && steps.detect.outputs.changed == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: jack-susfs-source-candidate
+          path: ${{ runner.temp }}/susfs-candidate/
+          if-no-files-found: warn
+          retention-days: 30
+
+  publish:
+    needs: generate
+    if: needs.generate.outputs.changed == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: jack-susfs-source-candidate
+          path: ${{ runner.temp }}/susfs-candidate
+
+      - name: Create candidate branch and draft PR, never update main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_REPOSITORY: ${{ github.repository }}
+          BASE_COMMIT: ${{ github.sha }}
+        run: |
+          python3 scripts/publish_candidate.py \
+            --directory "$RUNNER_TEMP/susfs-candidate" \
+            --repository "$TARGET_REPOSITORY" \
+            --base "$BASE_COMMIT"

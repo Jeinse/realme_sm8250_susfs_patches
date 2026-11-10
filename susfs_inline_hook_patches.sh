@@ -5,16 +5,16 @@ set -euo pipefail
 
 readonly PATCH_FILE='entropy-1.7-susfs-2.3.0-jack.patch'
 readonly PATCH_SHA256='4897d59a73f3e4239e8e276cd6065eccec0e185bab80910e76df7754f64ff4bf'
-readonly PATCH_URL="https://raw.githubusercontent.com/Jeinse/realme_sm8250_susfs_patches/main/patches/${PATCH_FILE}"
 readonly TESTED_BASE='12a4f30d3027b12ce27dec8c72b56b2a570e0812'
 
 usage() {
     cat <<'EOF'
-Usage: bash susfs_inline_hook_patches.sh [--check] [KERNEL_ROOT]
+Usage: bash susfs_inline_hook_patches.sh [--check] [--ref COMMIT_SHA] [KERNEL_ROOT]
 
 Apply the reviewed SUSFS 2.3.0 core and inline hooks to Entropy-1.7.
 KERNEL_ROOT defaults to the current directory.
 --check validates without changing kernel source files.
+--ref pins remote patch downloads to the same full commit as this script.
 Already-applied patches are detected and skipped.
 Defconfig and BakaSU driver setup remain under your control.
 EOF
@@ -27,9 +27,13 @@ die() {
 
 check_only=false
 kernel_arg=''
+patch_ref=${SUSFS_PATCHES_REF:-main}
 while (($#)); do
     case "$1" in
         --check) check_only=true ;;
+        --ref) (($# >= 2)) || die '--ref requires a full commit SHA.'
+            patch_ref=$2
+            shift ;;
         -h|--help) usage; exit 0 ;;
         --) shift; (($# <= 1)) || die 'Expected one kernel directory.'
             if (($#)); then
@@ -43,6 +47,11 @@ while (($#)); do
     esac
     shift
 done
+
+if [[ "$patch_ref" != main && ! "$patch_ref" =~ ^[0-9a-f]{40}$ ]]; then
+    die 'Patch ref must be main or a full lowercase commit SHA.'
+fi
+readonly PATCH_URL="https://raw.githubusercontent.com/Jeinse/realme_sm8250_susfs_patches/${patch_ref}/patches/${PATCH_FILE}"
 
 for tool in git sha256sum awk mktemp; do
     command -v "$tool" >/dev/null 2>&1 || die "Required command not found: $tool"
@@ -61,7 +70,8 @@ patch_path=''
 script_source=${BASH_SOURCE[0]:-}
 if [[ -n "$script_source" && -f "$script_source" ]]; then
     script_dir=$(cd -- "$(dirname -- "$script_source")" && pwd -P)
-    if [[ -f "$script_dir/patches/$PATCH_FILE" ]]; then
+    if [[ -f "$script_dir/patches/$PATCH_FILE" ]] &&
+       { [[ "$patch_ref" == main ]] || [[ "$(git -C "$script_dir" rev-parse HEAD 2>/dev/null)" == "$patch_ref" ]]; }; then
         patch_path="$script_dir/patches/$PATCH_FILE"
     fi
 fi

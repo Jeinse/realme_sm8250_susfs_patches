@@ -32,7 +32,18 @@ bash /tmp/realme-sm8250-susfs-patches/susfs_inline_hook_patches.sh --check /你�
 - 已验证的内核基线：`12a4f30d3027b12ce27dec8c72b56b2a570e0812`。
 - 从未集成旧 KSU/SukiSU/BakaSU 手动钩子的基线开始。不要额外叠加之前的手动 BakaSU hook 补丁，也不要重复执行 Jack 原版 sed 脚本。
 - 脚本不修改 defconfig，不下载或注册 BakaSU 驱动；继续使用你的驱动集成和编译流程。
-- 本仓库保存固定版本的适配结果，不会在构建时自动拉取 Jack 或 SUSFS 最新代码。上游更新需要重新适配和验证。
+- 构建入口只应用固定版本的适配结果，不会临时拉取 Jack 最新代码。独立的同步工作流会检测更新、生成源码检查通过的候选分支与 Draft PR；编译和刷机由你手动完成，测试后再合并。
+
+## 自动同步候选，手动构建测试
+
+已提供两个工作流：
+
+- **Sync Jack SUSFS candidate (source checks only)**：每天一次或手动检测 Jack 两份输入，重放审核过的七处适配，检查后发布候选分支/Draft PR。
+- **Validate source tools (no kernel compilation)**：检查生成工具、元数据和补丁一致性。
+
+两者均不编译内核，不触发 Android-Builder，也不自动合并候选。未知冲突会停止，稳定补丁保持原样。
+
+候选和正式构建均建议整体固定到本仓库的精确提交。远程入口支持 `--ref <完整提交号>`，让脚本与补丁保持同一版本。详细的 Android-Builder 调用、手工编译/刷机和 PR 合并流程见 [SYNC_AND_TEST.md](docs/SYNC_AND_TEST.md)。
 
 ## 配置由你维护
 
@@ -53,9 +64,9 @@ SUSFS 子功能按需开启，并检查合并设备配置后生成的最终 `.co
 
 ## 验证范围
 
-原补丁在干净基线上通过应用检查、实际应用及反向检查；27 个结果文件一致。使用 BakaSU 官方 inline 检查通过，24 个改动 C 文件在 ARM64、Clang 18.1.3、LTO、CFI 与 `-Werror` 下通过目标文件编译。
+首次发布版本（Jack `732feefc0`）在干净基线上通过应用检查、实际应用及反向检查；27 个结果文件一致。使用 BakaSU 官方 inline 检查通过，24 个改动 C 文件在 ARM64、Clang 18.1.3、LTO、CFI 与 `-Werror` 下通过目标文件编译。这项历史编译结果不适用于后续自动生成的新候选。
 
-完整内核链接、BakaSU 全驱动构建和真机启动不在上述验证范围内。版本及校验值见 [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json)。
+完整内核链接、BakaSU 全驱动构建和真机启动不在上述历史验证范围内。新候选仅执行源码检查，其编译和真机状态始终等待你手动记录。版本及校验值见 [SOURCE_MANIFEST.json](SOURCE_MANIFEST.json)。
 
 ## 上游来源
 

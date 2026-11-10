@@ -1,0 +1,40 @@
+{
+  "source_jack_commit": "732feefc0d4132bc313d39d7a511b9b7bbe51ddb",
+  "expected_rejections": [
+    {
+      "path": "fs/Makefile",
+      "header": "@@ -14,6 +14,8 @@ obj-y :=\topen.o read_write.o file_table.o super.o \\",
+      "body_sha256": "6dd7ab5ac2f65909cf310dfc8f9f1d57d96de292c6d79f81fbd8d372b7490802"
+    },
+    {
+      "path": "fs/namespace.c",
+      "header": "@@ -26,10 +26,21 @@",
+      "body_sha256": "ebbbc3c5e159e380cfc71d3275d056487eecdd4f35e0044458742048f9cd8ebb"
+    },
+    {
+      "path": "fs/namespace.c",
+      "header": "@@ -953,7 +1109,22 @@ vfs_kern_mount(struct file_system_type *type, int flags, const char *name, void",
+      "body_sha256": "f65b28e490edd355831eadec1f01964333d2da01df9119ae07d7fd249d7b2bb5"
+    },
+    {
+      "path": "fs/proc/task_mmu.c",
+      "header": "@@ -1612,7 +1670,15 @@ static ssize_t pagemap_read(struct file *file, char __user *buf,",
+      "body_sha256": "bdad9ad964e75b579e45dab0f9731944ebfa2d52b96c05f20e340b3a40a9559c"
+    },
+    {
+      "path": "fs/super.c",
+      "header": "@@ -36,8 +36,16 @@",
+      "body_sha256": "b207f585fed205b6b28065437d21fc5876b7dab85c9f75cadeee6108e6ebabab"
+    },
+    {
+      "path": "mm/memory.c",
+      "header": "@@ -80,6 +80,10 @@",
+      "body_sha256": "df7ccd1dcf00403e0970bc54661a0aee408b8555ba77ef020ba2a3c1d73c6808"
+    },
+    {
+      "path": "mm/memory.c",
+      "header": "@@ -5197,12 +5201,21 @@ int __access_remote_vm(struct task_struct *tsk, struct mm_struct *mm,",
+      "body_sha256": "df9206de3cd4b4df3780c5f38cb7d67eca494398249c56e8a13f99fc16155b29"
+    }
+  ]
+}
