@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "base_repository_commit": "6c963a13ac3b3dde913e400c3f96b6fc6cdbbe45",
+  "kernel": {
+    "repository": "bijoyv9/android_kernel_realme_sm8250",
+    "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
+  },
+  "bakasu": {
+    "repository": "Baka-SU/BakaSU",
+    "commit": "516d3e87fbc986ccefdde2c2765f1700612441a9"
+  },
+  "jack": {
+    "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
+    "branch": "mainline",
+    "commit": "4b0766bdf5d568b695dfbb19994788f14c636f2b"
+  },
+  "inputs": [
+    {
+      "path": "susfs_inline_hook_patches.sh",
+      "sha256": "9afa89ee6474b80e2615096b926c1d8eef1cb7585f74130a375fbe6cf63d00f2"
+    },
+    {
+      "path": "susfs_patch_to_4.19.patch",
+      "sha256": "eee7b1bbab41d97b3d16ffb432a3efd159aba32577154685a2f9a5ba597288b4"
+    }
+  ],
+  "patch": {
+    "path": "patches/entropy-1.7-susfs-2.4.0-jack.patch",
+    "sha256": "d3e94cdb3c78e20c2413acc6b8da96694ae5ebdca70211849970146716eba2a1",
+    "files": 27
+  },
+  "adapter_hashes": {
+    "config/sources.json": "2b61418efe643a51ae80f1f39245ce3883567293c4a14a1e1269a659ed0e0a97",
+    "compat/entropy-1.7-fixups.patch": "340d810485139b567200cf1bcf9d9feedd3235ec1f90032db65a98cf7a35d20e",
+    "compat/entropy-1.7-rejections.json": "0142f76af3cae2f69631b833fca8642d7d54cfcec3e5e423da24af8c4caa2947",
+    "scripts/sync_jack.py": "546d7d11827a1cc667b07a3991201e2b80eeaabd8dd95c5f0e8fc22b3e9a9c31",
+    "scripts/publish_candidate.py": "1885c87ea9d444ccfb3cc05a1a860e0d6c0e95ec3f17b9262a0704af6288bd0f",
+    "susfs_inline_hook_patches.sh": "0ddd553cdec09e357a38e9666d062d84d8828cd3c07513d5ce9401efba415148"
+  },
+  "core_source_sha256": {
+    "fs/susfs.c": "a9ea3f96931c83de773e390928c35c4ddfe515c76ac3bbd32646ed8f5e014395",
+    "include/linux/susfs.h": "1dbe8e9d31211bf07eacf5c28054b7f3bb27d034565b88f1ddff371c356c4dd6",
+    "include/linux/susfs_def.h": "41716af01302f7343c4dc5e45bf90cb7ac4e5aed6652c3619a9f3df3e6465b58"
+  },
+  "changed_files": [
+    "block/ioprio.c",
+    "drivers/input/input.c",
+    "fs/Makefile",
+    "fs/exec.c",
+    "fs/namei.c",
+    "fs/namespace.c",
+    "fs/notify/fdinfo.c",
+    "fs/open.c",
+    "fs/proc/base.c",
+    "fs/proc/cmdline.c",
+    "fs/proc/fd.c",
+    "fs/proc/task_mmu.c",
+    "fs/proc_namespace.c",
+    "fs/read_write.c",
+    "fs/readdir.c",
+    "fs/stat.c",
+    "fs/statfs.c",
+    "fs/super.c",
+    "fs/susfs.c",
+    "include/linux/susfs.h",
+    "include/linux/susfs_def.h",
+    "kernel/kallsyms.c",
+    "kernel/reboot.c",
+    "kernel/sys.c",
+    "mm/memory.c",
+    "security/selinux/avc.c",
+    "security/selinux/hooks.c"
+  ],
+  "branch": "candidate/jack-4b0766bdf5d5-d2c57ecaaf",
+  "checks": {
+    "clean_apply_check": true,
+    "clean_apply": true,
+    "reverse_check": true,
+    "identical_result_files": 27,
+    "bakasu_inline_check": true,
+    "upstream_core_verbatim": true,
+    "known_compatibility_blocks": 7
+  },
+  "manual_validation": {
+    "full_kernel_build": "pending",
+    "device_flash_test": "pending"
+  },
+  "automatic_compilation": false
+}

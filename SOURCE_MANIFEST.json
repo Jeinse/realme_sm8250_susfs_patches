@@ -1,13 +1,13 @@
 {
   "kernel": {
     "repository": "bijoyv9/android_kernel_realme_sm8250",
-    "branch": "Entropy-1.7",
-    "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
+    "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812",
+    "branch": "Entropy-1.7"
   },
   "jack": {
     "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
     "branch": "mainline",
-    "commit": "732feefc0d4132bc313d39d7a511b9b7bbe51ddb"
+    "commit": "4b0766bdf5d568b695dfbb19994788f14c636f2b"
   },
   "bakasu_check": {
     "repository": "Baka-SU/BakaSU",
@@ -20,15 +20,13 @@
     },
     {
       "path": "susfs_patch_to_4.19.patch",
-      "sha256": "112faaad47fe7b500a127f2bc88488bcc7899a1cf4b764d46d884207162e9d42"
+      "sha256": "eee7b1bbab41d97b3d16ffb432a3efd159aba32577154685a2f9a5ba597288b4"
     }
   ],
   "output": {
-    "path": "patches/entropy-1.7-susfs-2.3.0-jack.patch",
-    "sha256": "4897d59a73f3e4239e8e276cd6065eccec0e185bab80910e76df7754f64ff4bf",
-    "files": 27,
-    "additions": 4265,
-    "deletions": 1
+    "path": "patches/entropy-1.7-susfs-2.4.0-jack.patch",
+    "sha256": "d3e94cdb3c78e20c2413acc6b8da96694ae5ebdca70211849970146716eba2a1",
+    "files": 27
   },
   "verification": {
     "clean_apply_check": true,
@@ -36,51 +34,21 @@
     "reverse_check": true,
     "identical_result_files": 27,
     "bakasu_inline_check": true,
-    "compiled_changed_c_files": 24,
+    "upstream_core_verbatim": true,
+    "known_compatibility_blocks": 7,
+    "compiled_changed_c_files": 0,
     "full_kernel_link": false,
     "full_bakasu_build": false,
-    "device_boot_test": false
+    "device_boot_test": false,
+    "manual_validation_required": true
   },
   "entrypoint": {
     "path": "susfs_inline_hook_patches.sh",
-    "sha256": "0ddd553cdec09e357a38e9666d062d84d8828cd3c07513d5ce9401efba415148",
+    "sha256": "534ddf745bd141e2a04c382bad4faa1579db5a6a07af59b87e92cefe01e07602",
     "kind": "verified merged-patch applicator"
   },
-  "wrapper_validation": [
-    {
-      "name": "bash-syntax",
-      "exit_code": 0,
-      "passed": true
-    },
-    {
-      "name": "help",
-      "exit_code": 0,
-      "passed": true
-    },
-    {
-      "name": "dry-run-on-pristine-baseline",
-      "exit_code": 0,
-      "passed": true
-    },
-    {
-      "name": "apply-on-pristine-baseline",
-      "exit_code": 0,
-      "passed": true
-    },
-    {
-      "name": "repeat-skips-without-changes",
-      "exit_code": 0,
-      "passed": true
-    },
-    {
-      "name": "conflict-fails-without-partial-application",
-      "exit_code": 1,
-      "passed": true
-    },
-    {
-      "name": "checksum-fails-without-changes",
-      "exit_code": 1,
-      "passed": true
-    }
-  ]
+  "manual_validation": {
+    "full_kernel_build": "pending",
+    "device_flash_test": "pending"
+  }
 }
