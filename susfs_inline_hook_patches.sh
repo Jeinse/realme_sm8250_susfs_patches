@@ -3,8 +3,8 @@
 # Upstream attribution and source revisions are recorded in SOURCE_MANIFEST.json.
 set -euo pipefail
 
-readonly PATCH_FILE='entropy-1.7-susfs-2.3.0-jack.patch'
-readonly PATCH_SHA256='4897d59a73f3e4239e8e276cd6065eccec0e185bab80910e76df7754f64ff4bf'
+readonly PATCH_FILE='entropy-1.7-susfs-2.4.0-jack.patch'
+readonly PATCH_SHA256='d3e94cdb3c78e20c2413acc6b8da96694ae5ebdca70211849970146716eba2a1'
 readonly TESTED_BASE='12a4f30d3027b12ce27dec8c72b56b2a570e0812'
 
 usage() {
