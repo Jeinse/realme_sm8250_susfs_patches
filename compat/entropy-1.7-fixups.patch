@@ -1,12 +1,17 @@
 diff --git a/fs/Makefile b/fs/Makefile
-index 051c1d93de4bd562a3af5551f2d490146e400ab6..a7ce0db348e49abceb3d118e53196d0dc9c3dbea 100644
+index 051c1d93de4bd562a3af5551f2d490146e400ab6..818b2fd5b8c159a09b6e5100c1bd54e898510462 100644
 --- a/fs/Makefile
 +++ b/fs/Makefile
-@@ -15,6 +15,8 @@ obj-y :=	open.o read_write.o file_table.o super.o \
+@@ -15,6 +15,13 @@ obj-y :=	open.o read_write.o file_table.o super.o \
  		stack.o fs_struct.o statfs.o fs_pin.o nsfs.o \
  		fs_types.o fs_context.o fs_parser.o
  
 +obj-$(CONFIG_KSU_SUSFS) += susfs.o
++# susfs: kernel_read() changed signature in v4.14; some 4.9 backport the new one.
++# Detect by signature, not by version.
++ifeq ($(shell grep -q "ssize_t kernel_read" $(srctree)/fs/read_write.c $(srctree)/fs/exec.c 2>/dev/null; echo $$?),0)
++CFLAGS_susfs.o += -DSUSFS_KERNEL_READ_NEW
++endif
 +
  ifeq ($(CONFIG_BLOCK),y)
  obj-y +=	buffer.o block_dev.o direct-io.o mpage.o

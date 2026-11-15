@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "base_repository_commit": "6c963a13ac3b3dde913e400c3f96b6fc6cdbbe45",
+  "base_repository_commit": "490d4555a9b6e89d9bc65494b59413e6a6feffd1",
   "kernel": {
     "repository": "bijoyv9/android_kernel_realme_sm8250",
     "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
@@ -12,7 +12,7 @@
   "jack": {
     "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
     "branch": "mainline",
-    "commit": "4b0766bdf5d568b695dfbb19994788f14c636f2b"
+    "commit": "37b805130bcd1d9ffd08e4c0efd1d698dd15399d"
   },
   "inputs": [
     {
@@ -21,26 +21,26 @@
     },
     {
       "path": "susfs_patch_to_4.19.patch",
-      "sha256": "eee7b1bbab41d97b3d16ffb432a3efd159aba32577154685a2f9a5ba597288b4"
+      "sha256": "9103fad70d496e8dd38a7f5f11c68fdea179989f2a672f47199df7cda7020ac0"
     }
   ],
   "patch": {
     "path": "patches/entropy-1.7-susfs-2.4.0-jack.patch",
-    "sha256": "d3e94cdb3c78e20c2413acc6b8da96694ae5ebdca70211849970146716eba2a1",
+    "sha256": "c9848f69000f24a35cabd9df5255c59b14d39e7c2984c4d42d95e5f1bdd49fb3",
     "files": 27
   },
   "adapter_hashes": {
     "config/sources.json": "2b61418efe643a51ae80f1f39245ce3883567293c4a14a1e1269a659ed0e0a97",
-    "compat/entropy-1.7-fixups.patch": "340d810485139b567200cf1bcf9d9feedd3235ec1f90032db65a98cf7a35d20e",
-    "compat/entropy-1.7-rejections.json": "0142f76af3cae2f69631b833fca8642d7d54cfcec3e5e423da24af8c4caa2947",
+    "compat/entropy-1.7-fixups.patch": "0f17a1e5e607fe03f0265bf2987818a7a0057286ddd0f30e4525fc7cf6eda69f",
+    "compat/entropy-1.7-rejections.json": "69a4093918d88f5782abb29af7b9433dd0aaf3f94545b52491b3c8bbedd66d3c",
     "scripts/sync_jack.py": "546d7d11827a1cc667b07a3991201e2b80eeaabd8dd95c5f0e8fc22b3e9a9c31",
     "scripts/publish_candidate.py": "1885c87ea9d444ccfb3cc05a1a860e0d6c0e95ec3f17b9262a0704af6288bd0f",
-    "susfs_inline_hook_patches.sh": "0ddd553cdec09e357a38e9666d062d84d8828cd3c07513d5ce9401efba415148"
+    "susfs_inline_hook_patches.sh": "85555456e8053219f45cbee90f17d9e3aad6824b44099ca2274986a7be7d5185"
   },
   "core_source_sha256": {
-    "fs/susfs.c": "a9ea3f96931c83de773e390928c35c4ddfe515c76ac3bbd32646ed8f5e014395",
-    "include/linux/susfs.h": "1dbe8e9d31211bf07eacf5c28054b7f3bb27d034565b88f1ddff371c356c4dd6",
-    "include/linux/susfs_def.h": "41716af01302f7343c4dc5e45bf90cb7ac4e5aed6652c3619a9f3df3e6465b58"
+    "fs/susfs.c": "d75f11a60af314f05cef6cea18e2dc5b595b81e67b7e0e7f19169babbffc74b7",
+    "include/linux/susfs.h": "763a502a37c3ffa3807ba2cab46af31807b8bd87cccb86d12e552d0532a96573",
+    "include/linux/susfs_def.h": "ae28964527e6fb64ca63e2a98f96acbdb8fd4bbd1350ded71ea6d491f7375158"
   },
   "changed_files": [
     "block/ioprio.c",
@@ -71,7 +71,7 @@
     "security/selinux/avc.c",
     "security/selinux/hooks.c"
   ],
-  "branch": "candidate/jack-4b0766bdf5d5-d2c57ecaaf",
+  "branch": "candidate/jack-37b805130bcd-c52b5c8f9c",
   "checks": {
     "clean_apply_check": true,
     "clean_apply": true,
