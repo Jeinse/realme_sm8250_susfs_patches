@@ -1,10 +1,10 @@
 {
-  "source_jack_commit": "732feefc0d4132bc313d39d7a511b9b7bbe51ddb",
+  "source_jack_commit": "37b805130bcd1d9ffd08e4c0efd1d698dd15399d",
   "expected_rejections": [
     {
       "path": "fs/Makefile",
-      "header": "@@ -14,6 +14,8 @@ obj-y :=\topen.o read_write.o file_table.o super.o \\",
-      "body_sha256": "6dd7ab5ac2f65909cf310dfc8f9f1d57d96de292c6d79f81fbd8d372b7490802"
+      "header": "@@ -14,6 +14,13 @@ obj-y :=\topen.o read_write.o file_table.o super.o \\",
+      "body_sha256": "c168debe3fae0bec9b2204c141b3e0e9873129a4a4ef638c01b960e1eec7ce1a"
     },
     {
       "path": "fs/namespace.c",

@@ -4,14 +4,14 @@
 set -euo pipefail
 
 readonly PATCH_FILE='entropy-1.7-susfs-2.4.0-jack.patch'
-readonly PATCH_SHA256='d3e94cdb3c78e20c2413acc6b8da96694ae5ebdca70211849970146716eba2a1'
+readonly PATCH_SHA256='c9848f69000f24a35cabd9df5255c59b14d39e7c2984c4d42d95e5f1bdd49fb3'
 readonly TESTED_BASE='12a4f30d3027b12ce27dec8c72b56b2a570e0812'
 
 usage() {
     cat <<'EOF'
 Usage: bash susfs_inline_hook_patches.sh [--check] [--ref COMMIT_SHA] [KERNEL_ROOT]
 
-Apply the reviewed SUSFS 2.3.0 core and inline hooks to Entropy-1.7.
+Apply the reviewed SUSFS core and inline hooks to Entropy-1.7.
 KERNEL_ROOT defaults to the current directory.
 --check validates without changing kernel source files.
 --ref pins remote patch downloads to the same full commit as this script.
@@ -109,4 +109,4 @@ fi
 
 # No --reject or --whitespace=fix: keep application atomic and preserve upstream bytes.
 git -C "$kernel_dir" apply --whitespace=nowarn "$patch_path"
-printf 'Applied SUSFS 2.3.0 core and inline hooks. Configure SUSFS mode and integrate BakaSU before building.\n'
+printf 'Applied %s. Configure SUSFS mode and integrate BakaSU before building.\n' "$PATCH_FILE"
