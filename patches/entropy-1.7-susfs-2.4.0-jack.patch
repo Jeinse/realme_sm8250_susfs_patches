@@ -2237,7 +2237,7 @@ index ad160dbe4429d97a4e86e6785fd2466d6da98142..5fa28d414f368498117fed8e97de068c
  	 * Always return at least 1 from get_anon_bdev.
 diff --git a/fs/susfs.c b/fs/susfs.c
 new file mode 100644
-index 0000000000000000000000000000000000000000..5293cb9e90249f52eb7daf5265553a01445f35fe
+index 0000000000000000000000000000000000000000..7ec01d58a6ca755dd90a4e776b8d91383effb4fd
 --- /dev/null
 +++ b/fs/susfs.c
 @@ -0,0 +1,2642 @@
@@ -2659,7 +2659,7 @@ index 0000000000000000000000000000000000000000..5293cb9e90249f52eb7daf5265553a01
 +			return false;
 +		}
 +
-+		if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags) &&
++		if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_state) &&
 +			likely(!susfs_is_uid_allowed_for_sus_path(uid))))
 +		{
 +			//SUSFS_LOGI("hiding path with ino '%lu'\n", inode->i_ino);
@@ -2668,7 +2668,7 @@ index 0000000000000000000000000000000000000000..5293cb9e90249f52eb7daf5265553a01
 +		return false;
 +	}
 +
-+	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
++	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_state) &&
 +		likely(!susfs_is_uid_allowed_for_sus_path(uid))))
 +	{
 +		//SUSFS_LOGI("hiding path with ino '%lu'\n", inode->i_ino);
