@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "base_repository_commit": "490d4555a9b6e89d9bc65494b59413e6a6feffd1",
+  "base_repository_commit": "37be516011db4e5d01b2a67bfc55f95a1e500a90",
   "kernel": {
     "repository": "bijoyv9/android_kernel_realme_sm8250",
     "commit": "12a4f30d3027b12ce27dec8c72b56b2a570e0812"
@@ -12,7 +12,7 @@
   "jack": {
     "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
     "branch": "mainline",
-    "commit": "37b805130bcd1d9ffd08e4c0efd1d698dd15399d"
+    "commit": "ec069a4e34f992d602a6b40d2e211df2516e2865"
   },
   "inputs": [
     {
@@ -21,12 +21,12 @@
     },
     {
       "path": "susfs_patch_to_4.19.patch",
-      "sha256": "9103fad70d496e8dd38a7f5f11c68fdea179989f2a672f47199df7cda7020ac0"
+      "sha256": "e3ac1fc772a1bac7e4385850e90826a41e3fd4cf16fc1868fe834eb396d3194a"
     }
   ],
   "patch": {
     "path": "patches/entropy-1.7-susfs-2.4.0-jack.patch",
-    "sha256": "c9848f69000f24a35cabd9df5255c59b14d39e7c2984c4d42d95e5f1bdd49fb3",
+    "sha256": "289e2c18ccd3bd88f411907649c58814583e9c36ea84e171ff52f4cf04bb68c6",
     "files": 27
   },
   "adapter_hashes": {
@@ -35,10 +35,10 @@
     "compat/entropy-1.7-rejections.json": "69a4093918d88f5782abb29af7b9433dd0aaf3f94545b52491b3c8bbedd66d3c",
     "scripts/sync_jack.py": "546d7d11827a1cc667b07a3991201e2b80eeaabd8dd95c5f0e8fc22b3e9a9c31",
     "scripts/publish_candidate.py": "1885c87ea9d444ccfb3cc05a1a860e0d6c0e95ec3f17b9262a0704af6288bd0f",
-    "susfs_inline_hook_patches.sh": "85555456e8053219f45cbee90f17d9e3aad6824b44099ca2274986a7be7d5185"
+    "susfs_inline_hook_patches.sh": "bd09188adc91c3bc034023e183338287ac8f5827a6b9ca668270c3fb01f06a6d"
   },
   "core_source_sha256": {
-    "fs/susfs.c": "d75f11a60af314f05cef6cea18e2dc5b595b81e67b7e0e7f19169babbffc74b7",
+    "fs/susfs.c": "82ad5cb17e878377a98f983e0a4f1a3c8d14bc0bdd2fdfa37d774e53ec70e610",
     "include/linux/susfs.h": "763a502a37c3ffa3807ba2cab46af31807b8bd87cccb86d12e552d0532a96573",
     "include/linux/susfs_def.h": "ae28964527e6fb64ca63e2a98f96acbdb8fd4bbd1350ded71ea6d491f7375158"
   },
@@ -71,7 +71,7 @@
     "security/selinux/avc.c",
     "security/selinux/hooks.c"
   ],
-  "branch": "candidate/jack-37b805130bcd-c52b5c8f9c",
+  "branch": "candidate/jack-ec069a4e34f9-e45ab4172f",
   "checks": {
     "clean_apply_check": true,
     "clean_apply": true,
