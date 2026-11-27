@@ -4,7 +4,7 @@
 set -euo pipefail
 
 readonly PATCH_FILE='entropy-1.7-susfs-2.4.0-jack.patch'
-readonly PATCH_SHA256='289e2c18ccd3bd88f411907649c58814583e9c36ea84e171ff52f4cf04bb68c6'
+readonly PATCH_SHA256='298aa396b9b25568bae1fc044bc7a391568c84dbe76ddc9ac1347e26733a46cf'
 readonly TESTED_BASE='12a4f30d3027b12ce27dec8c72b56b2a570e0812'
 
 usage() {
