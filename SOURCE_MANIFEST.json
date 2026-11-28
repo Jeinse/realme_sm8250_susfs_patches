@@ -7,7 +7,7 @@
   "jack": {
     "repository": "JackA1ltman/NonGKI_Kernel_Build_2nd",
     "branch": "mainline",
-    "commit": "ec069a4e34f992d602a6b40d2e211df2516e2865"
+    "commit": "b3fdebf206609cb00abf57a1eb4c31878dfbcc57"
   },
   "bakasu_check": {
     "repository": "Baka-SU/BakaSU",
@@ -20,12 +20,12 @@
     },
     {
       "path": "susfs_patch_to_4.19.patch",
-      "sha256": "e3ac1fc772a1bac7e4385850e90826a41e3fd4cf16fc1868fe834eb396d3194a"
+      "sha256": "7e8463304562944f889159bcc554c0ed8891b34021ab5ef1bba15ee924780ab5"
     }
   ],
   "output": {
     "path": "patches/entropy-1.7-susfs-2.4.0-jack.patch",
-    "sha256": "289e2c18ccd3bd88f411907649c58814583e9c36ea84e171ff52f4cf04bb68c6",
+    "sha256": "298aa396b9b25568bae1fc044bc7a391568c84dbe76ddc9ac1347e26733a46cf",
     "files": 27
   },
   "verification": {
@@ -44,7 +44,7 @@
   },
   "entrypoint": {
     "path": "susfs_inline_hook_patches.sh",
-    "sha256": "9e98199e8f81c242aa176fb80e2cac1da19414d2acf7727b0091f9e4bbc1c5ed",
+    "sha256": "9c9a1d20450c11fb611f8ea2d0355ac667bcdcaa00e53dd026c441b40ffce470",
     "kind": "verified merged-patch applicator"
   },
   "manual_validation": {
